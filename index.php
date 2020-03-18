@@ -12,6 +12,11 @@ $Lots=[
 ['A'=>'Куртка для сноуборда DC Mutiny Charocal', 'B'=>'Одежда', 'C'=>7500, 'D'=>'img/lot-5.jpg'],
 ['A'=>'Маска Oakley Canopy', 'B'=>'Разное', 'C'=>5400, 'D'=>'img/lot-6.jpg'],
 ];
+function format_number($number, $rub){
+$number=ceil($number);
+$number=number_format($number, 0, ' ', ' ');
+return $rub?$number."<b class='rub'>р</b>": $number;
+}
 ?>
 <!DOCTYPE html
 <html lang="ru">
@@ -87,25 +92,25 @@ $Lots=[
         </div>
         <ul class="lots__list">
             <?php
-            foreach ($Lots as $key => $value) {
+            foreach ($Lots as $lot) {
             ?>
             <li class="lots__item lot">
-                <div class="lot__image">
-                    <img src="<?=$value[D]?>" width="350" height="260" alt="">
-                </div>
-                <div class="lot__info">
-                    <span class="lot__category"><?=$value[B]?></span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$value[A]?></a></h3>
-                    <div class="lot__state">
-                        <div class="lot__rate">
-                            <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$value[C]?><b class="rub">р</b></span>
-                        </div>
-                        <div class="lot__timer timer">
-                            12:23
-                        </div>
-                    </div>
-                </div>
+            <div class="lot__image">
+            <img src="<?=$lot["D"]?>" width="350" height="260" alt="">
+            </div>
+            <div class="lot__info">
+            <span class="lot__category"><?=$lot["B"]?></span>
+            <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?=$lot["A"]?></a></h3>
+            <div class="lot__state">
+            <div class="lot__rate">
+            <span class="lot__amount">Стартовая цена <?=format_number($lot["C"],false)?></span>
+            <span class="lot__cost"><?=format_number($lot["C"],true)?></span>
+            </div>
+            <div class="lot__timer timer">
+            12:23
+            </div>
+            </div>
+            </div>
             </li>
             <?php
             }
