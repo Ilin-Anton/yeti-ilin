@@ -1,0 +1,15 @@
+<?php
+require_content('functions.php');
+$page_content=compile_template('index.php',[
+'category_list'=>$Cat;
+'Lots_list'=>$Lots;
+])
+$layout_content=compile_template('layuot.php',[
+'page_title'=>'Главная',
+'is_auth'=>$is_auth,
+'user_name'=>$user_name,
+'page_content'=>$page_content,
+'category_list'=>$Cat
+]);
+print($layout_content);
+?>
